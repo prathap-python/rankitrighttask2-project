@@ -1,1 +1,1 @@
-web: gunicorn rankitrighttask.wsgi
+web: gunicorn rankitrighttask2.wsgi
