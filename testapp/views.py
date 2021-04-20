@@ -8,6 +8,9 @@ from bs4 import BeautifulSoup
 import requests
 def homeview(request):
     flag=False
+    title=None
+    surls=None
+    count=None
     if request.method=="POST":
         flag=True
         url=request.POST.get("url")
