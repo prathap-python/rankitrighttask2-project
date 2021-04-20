@@ -1,0 +1,34 @@
+{%extends "testapp/base.html"%}
+{%block child_block%}
+<div class="container">
+    <h1>View1</h1>
+
+    <form method="POST">
+        {%csrf_token%}
+    <div class="mb-3">
+    <label for="url" class="form-label"><b>Enter Url</b></label>
+    <input type="text" class="form-control" id="url" name="url">
+
+        <br>
+        <button type="submit" class="btn btn-primary bg-dark"><b>Submit</b></button>
+        {%if flag%}
+        <h4><u>The Titles are:</u></h4>
+        {%for x in title%}
+        <h4>{{x}}</h4>
+        {%endfor%}
+        <h4><u>Number of links:</u></h4>
+        <h4>{{count}}</h4>
+        <h4><u>links are:</u></h4>
+        {%for y in surls%}
+        <h4><a href="{{y}}">{{y}}</a></h4><br>
+        {%endfor%}
+        {%endif%}
+
+        </form>
+    <br><br>
+
+  </div>
+</div>
+
+
+{%endblock%}
