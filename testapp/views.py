@@ -73,10 +73,36 @@ def homeview(request):
                 print( "Internal link:", href)
                 urls.add(href)
                 internal_urls.add(href)
+            for a_tag in soup.findAll("img"):
+                href = a_tag.attrs.get("src")
+                if href == "" or href is None:
+                    # href empty tag
+                    continue
+                 # join the URL if it's relative (not absolute link)
+                href = urljoin(url, href)
+                # parsed_href = urlparse(href)
+                # # remove URL GET parameters, URL fragments, etc.
+                # href = parsed_href.scheme + "://" + parsed_href.netloc + parsed_href.path
+                if not is_valid(href):
+                    # not a valid URL
+                    continue
+                if href in internal_urls:
+                    # already in the set
+                    continue
+                if domain_name not in href:
+                    # external link
+                    if href not in external_urls:
+                        print( "External link:",href)
+                        external_urls.add(href)
+                    continue
+                print( "Internal link:", href)
+                urls.add(href)
+                internal_urls.add(href)
+
             return urls
 
 
-        def crawl(url, max_urls=30):
+        def crawl(url, max_urls=100):
             """
             Crawls a web page and extracts all links.
             You'll find all links in `external_urls` and `internal_urls` global set variables.
@@ -105,7 +131,7 @@ def homeview(request):
         print("[+] Total Internal links:", len(internal_urls))
         print("[+] Total External links:", len(external_urls))
         print("[+] Total URLs:", len(external_urls) + len(internal_urls))
-        print("[+] Total crawled URLs:", 30)
+        print("[+] Total crawled URLs:", total_urls_visited)
 
 
 
