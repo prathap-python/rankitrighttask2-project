@@ -16,11 +16,20 @@
         {%for x in title%}
         <h4>{{x}}</h4>
         {%endfor%}
-        <h4><u>Number of links:</u></h4>
-        <h4>{{count}}</h4>
-        <h4><u>links are:</u></h4>
-        {%for y in surls%}
+        <h4><u>Number Of Total Links:</u></h4>
+        <h4>{{turls_count}}</h4>
+        <h4><u>Number Of External Links:</u></h4>
+        <h4>{{eurls_count}}</h4>
+        <h4><u>Number Of Internal Links:</u></h4>
+        <h4>{{iurls_count}}</h4>
+
+        <h4><u>External links are:</u></h4>
+        {%for y in eurls%}
         <h4><a href="{{y}}">{{y}}</a></h4><br>
+        {%endfor%}
+        <h4><u>Internal links are:</u></h4>
+        {%for z in iurls%}
+        <h4><a href="{{z}}">{{z}}</a></h4><br>
         {%endfor%}
         {%endif%}
 
